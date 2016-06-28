@@ -33,7 +33,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-istanbul": "^1.0.0",
     "gulp-mocha": "^2.2.0",
-    "nami-test": "git+ssh://git@github.com:bitnami/nami-test.git",
+    "nami-test": "^0.0.1",
     "intercept-stdout": "^0.1.2",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
