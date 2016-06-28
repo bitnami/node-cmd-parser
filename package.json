@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Command line parser",
   "main": "index.js",
+  "repository": {
+    "type" : "git", "url" : "https://github.com/bitnami/node-cmd-parser.git"
+  },
   "scripts": {
     "test": "gulp test",
     "lint": "gulp lint",
