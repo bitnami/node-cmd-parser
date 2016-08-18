@@ -270,7 +270,7 @@ class OptionsContainer {
       i += 1;
     }
     if (opts.abortIfRequiredAndNotProvided) {
-      const requiredNotProvided = this.getRequiredAndNotProviedOptions();
+      const requiredNotProvided = this.getRequiredWithNoValue();
       if (_.keys(requiredNotProvided).length !== 0) {
         this.throwRequiredOptionsError(_.pluck(requiredNotProvided, 'name'));
       }
@@ -345,9 +345,14 @@ class OptionsContainer {
       return opt.required === true;
     });
   }
-  getRequiredAndNotProviedOptions() {
+  getRequiredAndNotProvidedOptions() {
     return this.getFilteredOptions(function(opt) {
       return opt.required === true && opt.provided === false;
+    });
+  }
+  getRequiredWithNoValue() {
+    return this.getFilteredOptions(function(opt) {
+      return opt.required === true && opt.value === null;
     });
   }
 
