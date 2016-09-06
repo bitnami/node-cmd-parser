@@ -22,7 +22,7 @@
     "printf": "^0.2.3"
   },
   "devDependencies": {
-    "bitnami-gulp-common-tasks": "bitnami/gulp-common-tasks#v2.0.0",
+    "bitnami-gulp-common-tasks": "bitnami/gulp-common-tasks#v2.0.1",
     "chai": "^3.5.0",
     "eslint": "^2.13.1",
     "eslint-config-bitnami": "bitnami/eslint-config-bitnami#v1.0.0",
