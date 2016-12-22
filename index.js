@@ -116,7 +116,7 @@ class Option {
   isEmpty() {
     const value = this.getValue();
     if (this.type === 'boolean') {
-      if (value == false) {
+      if (value === false) {
         return true;
       } else {
         return false;
