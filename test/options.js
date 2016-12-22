@@ -185,4 +185,59 @@ describe('Options Parsing', function() {
       }).to.throw(Error, 'Choice \'foo\' does not allow any valid value');
     });
   });
+
+  describe('Required options', function() {
+    it('Complains if not present', function() {
+      parser.addOption({name: 'foo', required: true});
+      expect(function() {
+        parser.parse([]);
+      }).to.throw(Error, 'The following options are required: foo');
+    });
+
+    it('Requires boolean', function() {
+      parser.addOption({name: 'bar', type: 'boolean', required: true});
+
+      expect(function() {
+          parser.parse([]);
+      }).to.throw(Error, 'The following options are required: bar');
+    });
+
+    it('Does not require boolean if default', function() {
+      parser.addOption({name: 'bar', type: 'boolean', required: true, defaultValue: true});
+
+      parser.parse([]);
+      expect(parser.getOptionValue('bar')).to.eql(true);
+    });
+
+    it('Requires string', function() {
+      parser.addOption({name: 'bar', type: 'string', required: true});
+
+      expect(function() {
+          parser.parse([]);
+      }).to.throw(Error, 'The following options are required: bar');
+    });
+
+    it('Does not require string if default', function() {
+      const defaultValue = 'a';
+      parser.addOption({name: 'bar', type: 'string', required: true, defaultValue: defaultValue});
+
+      parser.parse([]);
+      expect(parser.getOptionValue('bar')).to.eql(defaultValue);
+    });
+
+    it('Empty string is valid for required', function() {
+      parser.addOption({name: 'bar', type: 'string', required: true});
+
+      parser.parse(['--bar', '']);
+      expect(parser.getOptionValue('bar')).to.eql('');
+    });
+
+    it('Does not clobber the required property', function() {
+      let req;
+      parser.addOption({name: 'bar', type: 'string', required: true, defaultValue: 'a', callback: opt => req = opt.required});
+
+      parser.parse(['--bar', '']);
+      expect(req).to.eql(true);
+    });
+  });
 });
