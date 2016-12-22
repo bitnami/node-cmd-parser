@@ -113,7 +113,18 @@ class Option {
     }
     return value;
   }
-
+  isEmpty() {
+    const value = this.getValue();
+    if (this.type === 'boolean') {
+      if (value == false) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return _.isEmpty(value);
+    }
+  }
   getHelpText(options) {
     options = _.defaults(options || {}, {compact: false});
     let text = '';
@@ -270,7 +281,7 @@ class OptionsContainer {
       i += 1;
     }
     if (opts.abortIfRequiredAndNotProvided) {
-      const requiredNotProvided = this.getRequiredWithNoValue();
+      const requiredNotProvided = this.getRequiredAndNotProvidedOptions();
       if (_.keys(requiredNotProvided).length !== 0) {
         this.throwRequiredOptionsError(_.pluck(requiredNotProvided, 'name'));
       }
@@ -347,12 +358,7 @@ class OptionsContainer {
   }
   getRequiredAndNotProvidedOptions() {
     return this.getFilteredOptions(function(opt) {
-      return opt.required === true && opt.provided === false;
-    });
-  }
-  getRequiredWithNoValue() {
-    return this.getFilteredOptions(function(opt) {
-      return opt.required === true && opt.value === null;
+      return opt.required === true && opt.provided === false && opt.isEmpty();
     });
   }
 
