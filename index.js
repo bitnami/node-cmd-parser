@@ -163,7 +163,7 @@ class Option {
       case 'choice':
         if (_.size(this.allAllowedValues()) === 0) {
           throw new Error(`Choice '${cliName}' does not allow any valid value`);
-        } else if (!_.contains(this.allAllowedValues(), val)) {
+        } else if (!_.includes(this.allAllowedValues(), val)) {
           throw new Error(`'${val}' is not a valid value for '${cliName}'. Allowed: ${this.validValues.join(', ')}`);
         }
         break;
@@ -251,7 +251,7 @@ class OptionsContainer {
           if (value === null) {
             value = true;
           } else {
-            if (_.contains(['0', 'false', 'no'], String(value).toLowerCase())) {
+            if (_.includes(['0', 'false', 'no'], String(value).toLowerCase())) {
               value = false;
             } else {
               value = !!value;
@@ -283,7 +283,7 @@ class OptionsContainer {
     if (opts.abortIfRequiredAndNotProvided) {
       const requiredNotProvided = this.getRequiredAndNotProvidedOptions();
       if (_.keys(requiredNotProvided).length !== 0) {
-        this.throwRequiredOptionsError(_.pluck(requiredNotProvided, 'name'));
+        this.throwRequiredOptionsError(_.map(requiredNotProvided, 'name'));
       }
     }
     result.extraArgs = argv.slice(i) || [];
@@ -303,7 +303,7 @@ class OptionsContainer {
     return text;
   }
   getPublicOptions() {
-    return _.where(this._options, {secret: false});
+    return _.filter(this._options, {secret: false});
   }
   _normalizeOptDefinition(info) {
     let option = {};
@@ -493,7 +493,7 @@ class CommandsContainer extends OptionsContainer {
     return cmd;
   }
   getPublicCommands() {
-    return _.where(this._commands, {secret: false});
+    return _.filter(this._commands, {secret: false});
   }
   showHelp(options) {
     options = _.defaults(options || {}, {});
@@ -546,7 +546,7 @@ class CommandsContainer extends OptionsContainer {
     }
     if (!_.isEmpty(cmds)) {
       headText += ' <command>';
-      text += `\nAnd <command> is one of: ${this._formatText(_.pluck(cmds, 'name').join(', '))}`;
+      text += `\nAnd <command> is one of: ${this._formatText(_.map(cmds, 'name').join(', '))}`;
       text += `\n\nTo get more information about a command, you can execute:
 
    ${options.commandName} <command> --help\n`;
@@ -663,7 +663,7 @@ class Command extends CommandsContainer {
     }
     if (!_.isEmpty(cmds)) {
       headText += ' <command>';
-      text += `\nAnd <command> is one of: ${this._formatText(_.pluck(cmds, 'name').join(', '))}`;
+      text += `\nAnd <command> is one of: ${this._formatText(_.map(cmds, 'name').join(', '))}`;
       text += `\n\nTo get more information about a command, you can execute:
 
    ${options.commandName} help <command>\n`;
