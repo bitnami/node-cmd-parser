@@ -125,6 +125,7 @@ class Option {
       return _.isEmpty(value);
     }
   }
+  /* eslint-disable no-unused-vars */
   getHelpText(options) {
     options = _.defaults(options || {}, {compact: false});
     let text = '';
@@ -144,6 +145,7 @@ class Option {
     text += '\n';
     return text;
   }
+  /* eslint-enable no-unused-vars */
   getCliName() {
     return this.cliName || this.name;
   }
@@ -298,8 +300,7 @@ class OptionsContainer {
   throwRequiredOptionsError(optionList) {
     throw new ParserError(`The following options are required: ${optionList.join(',')}`, {showHelp: false});
   }
-  _formatText(text, options) {
-    options = _.defaults(options || {}, {spacing: 0});
+  _formatText(text) {
     return text;
   }
   getPublicOptions() {
@@ -495,10 +496,12 @@ class CommandsContainer extends OptionsContainer {
   getPublicCommands() {
     return _.filter(this._commands, {secret: false});
   }
+  /* eslint-disable no-unused-vars */
   showHelp(options) {
     options = _.defaults(options || {}, {});
     this.print(this.getHelpText());
   }
+  /* eslint-enable no-unused-vars */
   getCommand(name) {
     if (_.has(this._commands, name)) {
       return this._commands[name];
@@ -553,7 +556,6 @@ class CommandsContainer extends OptionsContainer {
     }
     return `${headText}\n\n ${text}`;
   }
-
 }
 
 class Command extends CommandsContainer {

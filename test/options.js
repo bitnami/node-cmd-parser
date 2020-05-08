@@ -234,9 +234,10 @@ describe('Options Parsing', function() {
 
     it('Does not clobber the required property', function() {
       let req;
-      parser.addOption({name: 'bar', type: 'string', required: true, defaultValue: 'a',
-                        callback: opt => req = opt.required});
-
+      parser.addOption({
+        name: 'bar', type: 'string', required: true, defaultValue: 'a',
+        callback: opt => req = opt.required
+      });
       parser.parse(['--bar', '']);
       expect(req).to.eql(true);
     });
