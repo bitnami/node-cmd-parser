@@ -1,6 +1,6 @@
 {
   "name": "cmd-parser",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Command line parser",
   "main": "index.js",
   "repository": {
@@ -22,12 +22,12 @@
     "printf": "^0.2.3"
   },
   "devDependencies": {
-    "bitnami-gulp-common-tasks": "bitnami/gulp-common-tasks#v2.0.2",
+    "bitnami-gulp-common-tasks": "github:bitnami/gulp-common-tasks#v3.0.0",
     "chai": "^3.5.0",
-    "eslint": "^2.13.1",
+    "eslint": "^6.5.1",
     "eslint-config-bitnami": "bitnami/eslint-config-bitnami#v1.0.0",
     "eslint-plugin-import": "^1.14.0",
-    "gulp": "^3.9.1",
-    "run-sequence": "^1.2.1"
+    "gulp": "^4.0.2",
+    "gulp4-run-sequence": "^1.0.1"
   }
 }

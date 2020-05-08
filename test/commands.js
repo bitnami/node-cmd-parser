@@ -40,9 +40,10 @@ describe('Commands Parsing', function() {
     beforeEach(function() {
       parser = new Parser({printer: function() {}, allowProcessExit: false});
       cmd = parser.addCommand({
-        name: 'hello', minArgs: 1, maxArgs: 2, namedArgs: ['former', 'latter']}, [
-          {name: 'verbose', type: 'boolean'}
-        ]);
+        name: 'hello', minArgs: 1, maxArgs: 2, namedArgs: ['former', 'latter']
+      }, [
+        {name: 'verbose', type: 'boolean'}
+      ]);
     });
 
     it('Parse basic command', function() {
