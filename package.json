@@ -19,7 +19,7 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "pluralize": "^2.0.0",
-    "printf": "^0.2.3"
+    "printf": "^0.6.1"
   },
   "devDependencies": {
     "bitnami-gulp-common-tasks": "github:bitnami/gulp-common-tasks#v3.0.0",
