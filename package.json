@@ -1,6 +1,6 @@
 {
   "name": "cmd-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Command line parser",
   "main": "index.js",
   "repository": {
@@ -17,7 +17,7 @@
   "author": "Bitnami",
   "license": "GPL-2.0",
   "dependencies": {
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "pluralize": "^2.0.0",
     "printf": "^0.2.3"
   },
